@@ -42,7 +42,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
         const lengthOfIntro = strings[whichIntro].length
 
-        const whoAmI = message.substring(thisindex + lengthOfIntro + 1)
+        const whoAmI = message.substring(thisindex + lengthOfIntro)
 
         const messageToSend = "Hi " + whoAmI + ", this is dad."
 
