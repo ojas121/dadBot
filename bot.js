@@ -23,31 +23,56 @@ bot.on('error', console.error);
 bot.on('message', function (user, userID, channelID, message, evt) {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
-    if (message.includes("I'm ") || message.includes("Im ") || message.includes("i'm ") || message.includes("im ") || message.includes("I am ") || message.includes("i am ")) {
-        const strings = ["I'm", "Im", "i'm", "im", "I am", "i am"]
-        const indices = []
+    try {
+        if (checkMessage(message)) {
+            let serverId = bot.channels[channelID].guild_id
+            console.log(serverId)
+            const strings = ["I'm", "Im", "i'm", "im", "I am", "i am"]
+            const indices = []
 
-        strings.forEach(string => {
-            indices.push(message.indexOf(string))
-        })
-
-        var thisindex = Math.max(indices);
-        var whichIntro = 0
-        for (var i = 0; i < indices.length; i++) {
-            if (indices[i] === thisindex) {
-                whichIntro = i;
+            strings.forEach(string => {
+                indices.push(message.indexOf(string))
+            })
+            console.log(indices)
+            var thisindex = Math.max(...indices);
+            console.log(thisindex)
+            var whichIntro = 0
+            for (var i = 0; i < indices.length; i++) {
+                if (indices[i] === thisindex) {
+                    whichIntro = i;
+                }
             }
+            console.log(whichIntro)
+
+            const lengthOfIntro = strings[whichIntro].length
+
+            const whoAmI = message.substring(thisindex + lengthOfIntro + 1)
+
+            const messageToSend = "Hi " + whoAmI + ", this is dad."
+
+            bot.sendMessage({
+                to: channelID,
+                message: messageToSend,
+            });
+
+            console.log(channelID)
+            bot.editNickname({
+                serverID: serverId,
+                userID: userID,
+                nick: whoAmI,
+            }, response => {console.log(response)});
         }
-
-        const lengthOfIntro = strings[whichIntro].length
-
-        const whoAmI = message.substring(thisindex + lengthOfIntro + 1)
-
-        const messageToSend = "Hi " + whoAmI + ", this is dad."
-
-        bot.sendMessage({
-            to: channelID,
-            message: messageToSend,
-        });
+    } catch (e) {
+        console.log(e)
     }
 });
+
+
+function checkMessage(message) {
+    if (message.includes(" I'm ") || message.includes(" Im ") || message.includes(" i'm ") || message.includes(" im ") || message.includes(" I am ") || message.includes(" i am ")) {
+        return true
+    } else {
+        message = " " + message
+        return message.includes(" I'm ") || message.includes(" Im ") || message.includes(" i'm ") || message.includes(" im ") || message.includes(" I am ") || message.includes(" i am ");
+    }
+}

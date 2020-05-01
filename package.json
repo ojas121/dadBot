@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "chmod 777 start.sh && ./start.sh"
+    "start": "node start.js"
   },
   "keywords": [],
   "author": "OM#2570",
   "license": "ISC",
   "dependencies": {
     "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+    "forever-monitor": "^2.0.0",
     "winston": "^3.2.1"
   }
 }
