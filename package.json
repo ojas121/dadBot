@@ -1,12 +1,16 @@
 {
   "name": "dad-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "Hey user, I'm dad",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "OM#2570",
+  "license": "ISC",
+  "dependencies": {
+    "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+    "winston": "^3.2.1"
+  }
 }
