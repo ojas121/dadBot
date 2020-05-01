@@ -23,7 +23,7 @@ bot.on('error', console.error);
 bot.on('message', function (user, userID, channelID, message, evt) {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
-    if (message.includes("I'm") || message.includes("Im") || message.includes("i'm") || message.includes("im") || message.includes("I am") || message.includes("i am")) {
+    if (message.includes("I'm ") || message.includes("Im ") || message.includes("i'm ") || message.includes("im ") || message.includes("I am ") || message.includes("i am ")) {
         const strings = ["I'm", "Im", "i'm", "im", "I am", "i am"]
         const indices = []
 
@@ -31,18 +31,17 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             indices.push(message.indexOf(string))
         })
 
-        var thisindex = 0
+        var thisindex = Math.max(indices);
         var whichIntro = 0
-        for (var i = 1; i < indices.length; i++) {
-            if (indices[i] > thisindex) {
+        for (var i = 0; i < indices.length; i++) {
+            if (indices[i] === thisindex) {
                 whichIntro = i;
-                thisindex = indices[i];
             }
         }
 
         const lengthOfIntro = strings[whichIntro].length
 
-        const whoAmI = message.substring(thisindex + lengthOfIntro)
+        const whoAmI = message.substring(thisindex + lengthOfIntro + 1)
 
         const messageToSend = "Hi " + whoAmI + ", this is dad."
 
