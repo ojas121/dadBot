@@ -13,6 +13,7 @@
   "dependencies": {
     "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
     "forever-monitor": "^2.0.0",
+    "give-me-a-joke": "^0.3.2",
     "winston": "^3.2.1"
   }
 }

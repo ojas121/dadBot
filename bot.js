@@ -1,6 +1,8 @@
 var Discord = require('discord.io');
 var logger = require('winston');
 var auth = require('./auth.json');
+var giveMeAJoke = require('give-me-a-joke');
+var messages = 0
 // Configure logger settings
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
@@ -21,6 +23,7 @@ bot.on('ready', function (evt) {
 bot.on('error', console.error);
 
 bot.on('message', function (user, userID, channelID, message, evt) {
+    messages++;
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
     try {
@@ -61,6 +64,16 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 userID: userID,
                 nick: whoAmI,
             }, response => {console.log(response)});
+        } else if (messages >= 20) {
+            //send a joke
+            let joke = giveMeAJoke.getRandomDadJoke(joke => {
+                bot.sendMessage({
+                    to: channelID,
+                    message: joke,
+                });
+            })
+
+            messages = 0
         }
     } catch (e) {
         console.log(e)
