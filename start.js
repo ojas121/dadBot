@@ -7,7 +7,7 @@ var child = new (forever.Monitor)('./bot.js', {
 });
 
 child.on('exit', function () {
-    console.log('your-filename.js has exited after 3 restarts');
+    console.log('bot.js has exited after 5 restarts');
 });
 
 child.start();
