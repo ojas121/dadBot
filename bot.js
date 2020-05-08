@@ -41,7 +41,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
             bot.sendMessage({
                 to: channelID,
-                message: "Sorry to hear you're embarrassed by me, child. I'll be back in " + Math.round(offset * 10) / 10 + " minutes",
+                message: "Sorry to hear you're embarrassed by me, child. I'll be back in " + Math.round((offset/60) * 10) / 10 + " minutes",
             });
             console.log(timeToShutUp.toDateString())
         }
