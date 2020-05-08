@@ -44,6 +44,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 message: "Sorry to hear you're embarrassed by me, child. I'll be back in " + Math.round((offset/60) * 10) / 10 + " minutes",
             });
             console.log(timeToShutUp.toDateString())
+
+            let serverId = bot.channels[channelID].guild_id
+            bot.editNickname({
+                serverID: serverId,
+                userID: userID,
+                nick: "having a tantrum",
+            }, response => {console.log(response)});
         }
 
         if (!shutUp[channelID] || new Date() > shutUp[channelID]) {
