@@ -65,13 +65,16 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             console.log(sentences)
             for (i = 0; i < sentences.length; i++) {
                 if (checkMessage(sentences[i]) && userID !== bot.id) {
+
+                    let sentence = sentences[i]
                     let serverId = bot.channels[channelID].guild_id
                     console.log(serverId)
+                    console.log(sentence)
                     const strings = ["I'm", "Im", "i'm", "im", "I am", "i am"]
                     const indices = []
 
                     strings.forEach(string => {
-                        indices.push(sentences[i].indexOf(string))
+                        indices.push(sentence.indexOf(string))
                     })
                     console.log(indices)
                     var thisindex = Math.max(...indices);
@@ -86,7 +89,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
                     const lengthOfIntro = strings[whichIntro].length
 
-                    const whoAmI = sentences[i].substring(thisindex + lengthOfIntro + 1)
+                    const whoAmI = sentence.substring(thisindex + lengthOfIntro + 1)
 
                     const messageToSend = "Hi " + whoAmI + ", this is dad."
 
