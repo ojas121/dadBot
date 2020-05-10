@@ -62,6 +62,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 sentences = [message]
             }
 
+            console.log(sentences)
             for (i = 0; i < sentences.length; i++) {
                 if (checkMessage(sentences[i]) && userID !== bot.id) {
                     let serverId = bot.channels[channelID].guild_id
