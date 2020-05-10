@@ -54,7 +54,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
         if (!shutUp[channelID] || new Date() > shutUp[channelID]) {
 
-            let sentences = message.split(".")
+            let sentences = []
+
+            try {
+                sentences = message.split(".")
+            } catch (e) {
+                sentences = [message]
+            }
 
             for (i = 0; i < sentences.length; i++) {
                 if (checkMessage(sentences[i]) && userID !== bot.id) {
