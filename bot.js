@@ -53,53 +53,60 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         }
 
         if (!shutUp[channelID] || new Date() > shutUp[channelID]) {
-            if (checkMessage(message) && userID !== bot.id) {
-                let serverId = bot.channels[channelID].guild_id
-                console.log(serverId)
-                const strings = ["I'm", "Im", "i'm", "im", "I am", "i am"]
-                const indices = []
 
-                strings.forEach(string => {
-                    indices.push(message.indexOf(string))
-                })
-                console.log(indices)
-                var thisindex = Math.max(...indices);
-                console.log(thisindex)
-                var whichIntro = 0
-                for (var i = 0; i < indices.length; i++) {
-                    if (indices[i] === thisindex) {
-                        whichIntro = i;
+            let sentences = message.split(".")
+
+            for (i = 0; i < sentences.length; i++) {
+                if (checkMessage(sentences[i]) && userID !== bot.id) {
+                    let serverId = bot.channels[channelID].guild_id
+                    console.log(serverId)
+                    const strings = ["I'm", "Im", "i'm", "im", "I am", "i am"]
+                    const indices = []
+
+                    strings.forEach(string => {
+                        indices.push(sentences[i].indexOf(string))
+                    })
+                    console.log(indices)
+                    var thisindex = Math.max(...indices);
+                    console.log(thisindex)
+                    var whichIntro = 0
+                    for (var i = 0; i < indices.length; i++) {
+                        if (indices[i] === thisindex) {
+                            whichIntro = i;
+                        }
                     }
-                }
-                console.log(whichIntro)
+                    console.log(whichIntro)
 
-                const lengthOfIntro = strings[whichIntro].length
+                    const lengthOfIntro = strings[whichIntro].length
 
-                const whoAmI = message.substring(thisindex + lengthOfIntro + 1)
+                    const whoAmI = sentences[i].substring(thisindex + lengthOfIntro + 1)
 
-                const messageToSend = "Hi " + whoAmI + ", this is dad."
+                    const messageToSend = "Hi " + whoAmI + ", this is dad."
 
-                bot.sendMessage({
-                    to: channelID,
-                    message: messageToSend,
-                });
-
-                console.log(channelID)
-                bot.editNickname({
-                    serverID: serverId,
-                    userID: userID,
-                    nick: whoAmI,
-                }, response => {console.log(response)});
-            } else if (messages[channelID] >= 20) {
-                //send a joke
-                let joke = giveMeAJoke.getRandomDadJoke(joke => {
                     bot.sendMessage({
                         to: channelID,
-                        message: joke,
+                        message: messageToSend,
                     });
-                })
 
-                messages[channelID] = 0
+                    console.log(channelID)
+                    bot.editNickname({
+                        serverID: serverId,
+                        userID: userID,
+                        nick: whoAmI,
+                    }, response => {console.log(response)});
+
+                    break;
+                } else if (messages[channelID] >= 20) {
+                    //send a joke
+                    let joke = giveMeAJoke.getRandomDadJoke(joke => {
+                        bot.sendMessage({
+                            to: channelID,
+                            message: joke,
+                        });
+                    })
+
+                    messages[channelID] = 0
+                }
             }
         }
     } catch (e) {
