@@ -50,6 +50,16 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 userID: userID,
                 nick: "having a tantrum",
             }, response => {console.log(response)});
+        } else if (message.toLowerCase() === "for fuck's sake, please stop, i'll even give up tea for you") {
+            let timeToShutUp = new Date()
+            let offset = 120 + Math.random() * 600
+            timeToShutUp.setSeconds(timeToShutUp.getSeconds() + offset)
+            shutUp[channelID] = timeToShutUp
+
+            bot.sendMessage({
+                to: channelID,
+                message: "Oh dear. I'll go now, see you in " + Math.round((offset/60) * 10) / 10 + " minutes",
+            });
         }
 
         if (!shutUp[channelID] || new Date() > shutUp[channelID]) {
@@ -70,7 +80,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     let serverId = bot.channels[channelID].guild_id
                     console.log(serverId)
                     console.log(sentence)
-                    const strings = ["I'm", "Im", "i'm", "im", "I am", "i am"]
+                    const strings = ["I'm ", "Im ", "i'm ", "im ", "I am ", "i am "]
                     const indices = []
 
                     strings.forEach(string => {
