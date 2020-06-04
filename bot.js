@@ -41,7 +41,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             bot.sendMessage({
                 to: channelID,
                 message: "Sorry to hear you're embarrassed by me, child. I'll be back in " + Math.round((offset/60) * 10) / 10 + " minutes",
-                tts: true
+                tts: false
             });
             console.log(timeToShutUp.toDateString())
 
@@ -60,7 +60,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             bot.sendMessage({
                 to: channelID,
                 message: "Oh dear. I'll go now, see you in " + Math.round((offset/60) * 10) / 10 + " minutes",
-                tts: true
+                tts: false
             });
         }
 
@@ -108,7 +108,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     bot.sendMessage({
                         to: channelID,
                         message: messageToSend,
-                        tts: true
+                        tts: false
                     });
 
                     console.log(channelID)
@@ -125,7 +125,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                         bot.sendMessage({
                             to: channelID,
                             message: joke,
-                            tts: true
+                            tts: false
                         });
                     })
 
