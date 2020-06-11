@@ -69,7 +69,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             let sentences = []
 
             try {
-                sentences = message.split(".")
+                sentences = message.split(".").push(message)
             } catch (e) {
                 sentences = [message]
             }
