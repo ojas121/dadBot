@@ -120,7 +120,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     }, response => {console.log(response)});
 
                     break;
-                } else if (messages[channelID] >= 20) {
+                } else if (messages[channelID] >= 30) {
                     //send a joke
                     let joke = giveMeAJoke.getRandomDadJoke(joke => {
                         bot.sendMessage({
