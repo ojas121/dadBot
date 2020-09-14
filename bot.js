@@ -34,7 +34,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     try {
         if (message === "Shut up, dad" || message === "shut up, dad" || message === "SHUT UP, DAD") {
             let timeToShutUp = new Date()
-            let offset = 120 + Math.random() * 600
+            let offset = 120 + Math.random() * 1800
             timeToShutUp.setSeconds(timeToShutUp.getSeconds() + offset)
             shutUp[channelID] = timeToShutUp
 
