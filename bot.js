@@ -126,7 +126,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                         bot.sendMessage({
                             to: channelID,
                             message: joke,
-                            tts: true
+                            tts: false
                         });
                     })
 
