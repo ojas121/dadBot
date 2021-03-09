@@ -83,7 +83,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     let serverId = bot.channels[channelID].guild_id
                     console.log(serverId)
                     console.log(sentence)
-                    const strings = ["I'm ", "Im ", "i'm ", "im ", "I am ", "i am ", "I.m ", "i.m ", "I'.m ", "i'.m "]
+                    const strings = ["I'm ", "Im ", "i'm ", "im ", "I am ", "i am ", "I.m ", "i.m ", "I'.m ", "i'.m ", "i,m", "I,m"]
                     const indices = []
 
                     strings.forEach(string => {
@@ -141,7 +141,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
 
 function checkMessage(message) {
-    if (message.includes(" I'm ") || message.includes(" Im ") || message.includes(" i'm ") || message.includes(" im ") || message.includes(" I am ") || message.includes(" i am ") || message.includes(" I.m ") || message.includes(" i.m ") || message.includes(" I'.m ") || message.includes(" i'.m ")) {
+    if (message.includes(" I'm ") || message.includes(" Im ") || message.includes(" i'm ") || message.includes(" im ") || message.includes(" I am ") || message.includes(" i am ") || message.includes(" I.m ") || message.includes(" i.m ") || message.includes(" I'.m ") || message.includes(" i'.m ") || message.includes(" i,m ") || message.includes(" I,m ")) {
         return true
     } else {
         message = " " + message
