@@ -72,6 +72,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     tts: false
                 })
             }
+            console.log(userID)
+            console.log(message.userID)
 
             let sentences = []
 
