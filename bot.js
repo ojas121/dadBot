@@ -66,7 +66,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
         if (!shutUp[channelID] || new Date() > shutUp[channelID]) {
             
-            if (message.author.id === 700733329175085058) {
+            if (message.userID === "700733329175085058") {
                 bot.sendMessage({
                     to: channelID, 
                     message: "Get HOI4 Marco", 
