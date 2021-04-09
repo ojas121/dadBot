@@ -65,15 +65,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         }
 
         if (!shutUp[channelID] || new Date() > shutUp[channelID]) {
-            if (userID === "700733329175085058") {
-                bot.sendMessage({
-                    to: channelID, 
-                    message: "Get HOI4 Marco", 
-                    tts: false
-                })
-            }
-            console.log(userID)
-            console.log(message.userID)
 
             let sentences = []
 
